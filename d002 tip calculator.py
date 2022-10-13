@@ -1,4 +1,4 @@
-
+# Day 2 of 100 Days of Python: A Tip Calculator
 print("Welcome to the tip calculator!")
 print("Please answer all questions in numbers. \n")
 
