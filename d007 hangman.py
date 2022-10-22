@@ -127,10 +127,10 @@ while "_" in display:
         print(*display)
 
         if lives == 0:
-            print("You lose.")
+            print(f"You lose. The word was {chosen_word}.")
             break
 if lives > 0:
     print("You win!")
 else:
-    print("Better luck next time.")
+    print("Better luck next time!")
   
