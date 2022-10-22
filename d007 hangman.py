@@ -96,7 +96,6 @@ hangman_art = ['''
 
 
 chosen_word = random.choice(word_list)
-print(f"For testing purposes, the chosen word is {chosen_word}.")
 
 display = []
 for letter in chosen_word:
