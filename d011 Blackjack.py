@@ -29,6 +29,10 @@ def serve_cards():
 def calculating_score():
     player_score = sum(player_hand)
     computer_score = sum(computer_hand)
+    if 11 in player_hand and player_score > 21:
+        player_score -= 10
+    if 11 in computer_hand and computer_score > 21:
+        computer_score -= 10
     if player_score > 21:
         print("\nYou went over. You lose.")
     elif player_score < 21 < computer_score:
