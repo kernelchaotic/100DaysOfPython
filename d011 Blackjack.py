@@ -30,15 +30,17 @@ def calculating_score():
     player_score = sum(player_hand)
     computer_score = sum(computer_hand)
     if player_score > 21:
-        print("You went over. You lose.")
+        print("\nYou went over. You lose.")
     elif player_score < 21 < computer_score:
-        print("Opponent went over. You win!")
+        print("\nOpponent went over. You win!")
     elif player_score < computer_score < 21:
-        print("Opponent scored higher. You lose.")
+        print("\nOpponent scored higher. You lose.")
     elif computer_score < player_score < 21:
-        print("You scored higher. You win!")
+        print("\nYou scored higher. You win!")
+    elif computer_score == 21:
+        print("\n Computer got Blackjack. You lose.")
     else:
-        print("Blackjack! You win!")
+        print("\nBlackjack! You win!")
 
 
 game_start = input("Do you want to play a game of BlackJack? Y/N:  ").lower()
@@ -49,24 +51,38 @@ if game_start == "y" or game_start == "yes":
         os.system('clear')
         print(logo)
         serve_cards()
-        print("Your cards: " + str(player_hand) + ", current score: " + str(sum(player_hand)))
+        p_score = sum(player_hand)
+        c_score = sum(computer_hand)
+        print("Your cards: " + str(player_hand) + ", current score: " + str(p_score))
         print("Computer's first card: " + str(computer_hand[0]))
 
         another_card = input("Pull another card? Y/N:  ").lower()
         if another_card == "y" or another_card == "yes":
             player_hand.append(random.choice(card_deck))
             computer_hand.append(random.choice(card_deck))
-            print("Your final hand: " + str(player_hand) + ", final score: " + str(sum(player_hand)))
-            print("Computer's final hand: " + str(computer_hand) + ", final score: " + str(sum(computer_hand)))
+            p_score = sum(player_hand)
+            c_score = sum(computer_hand)
+            if 11 in player_hand and p_score > 21:
+                p_score -= 10
+            if 11 in computer_hand and c_score > 21:
+                c_score -= 10
+            print("Your final hand: " + str(player_hand) + ", final score: " + str(p_score))
+            print("Computer's final hand: " + str(computer_hand) + ", final score: " + str(c_score))
         else:
             computer_pull = random.randint(0, 3)
             if computer_pull == 1:
                 computer_hand.append(random.choice(card_deck))
-                print("Your final hand: " + str(player_hand) + ", final score: " + str(sum(player_hand)))
-                print("Computer's final hand: " + str(computer_hand) + ", final score: " + str(sum(computer_hand)))
+                p_score = sum(player_hand)
+                c_score = sum(computer_hand)
+                if 11 in player_hand and p_score > 21:
+                    p_score -= 10
+                if 11 in computer_hand and c_score > 21:
+                    c_score -= 10
+                print("Your final hand: " + str(player_hand) + ", final score: " + str(p_score))
+                print("Computer's final hand: " + str(computer_hand) + ", final score: " + str(c_score))
             else:
-                print("Your final hand: " + str(player_hand) + ", final score: " + str(sum(player_hand)))
-                print("Computer's final hand: " + str(computer_hand) + ", final score: " + str(sum(computer_hand)))
+                print("Your final hand: " + str(player_hand) + ", final score: " + str(p_score))
+                print("Computer's final hand: " + str(computer_hand) + ", final score: " + str(c_score))
 
         calculating_score()
 
